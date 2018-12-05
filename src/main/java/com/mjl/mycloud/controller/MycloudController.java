@@ -12,6 +12,5 @@ public class MycloudController {
     @RequestMapping(value = "/hello",method = RequestMethod.GET)
     public String index() {
         return "index.jsp";
-
     }
 }
