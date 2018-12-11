@@ -11,12 +11,12 @@ import org.springframework.stereotype.Component;
  */
 @Component
 public interface UserMapper {
-    @Insert("INSERT INTO user(uuid,userName,password,role,section,createTime) VALUES((SELECT UUID()),#{userName}, #{password}, #{role}, #{section}, (SELECT NOW()))")
+    @Insert("INSERT INTO USER(uuid,userName,password,role,section,createTime) VALUES((SELECT UUID()),#{userName}, #{password}, #{role}, #{section}, (SELECT NOW()))")
     void insert(User user);
 
-    @Update("update user set userName=#{userName},password=#{password},role=#{role},section=#{section},updateTime=((SELECT NOW())) where uuid = #{uuid}")
+    @Update("update USER set userName=#{userName},password=#{password},role=#{role},section=#{section},updateTime=((SELECT NOW())) where uuid = #{uuid}")
     void update(User user);
 
-    @Select("select * from user where userName = #{name}")
+    @Select("select * from USER where userName = #{name}")
     User selectByName(String name);
 }

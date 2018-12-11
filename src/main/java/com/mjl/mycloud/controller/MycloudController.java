@@ -34,6 +34,10 @@ public class MycloudController {
     public String dairy() {
         return "dairy";
     }
+    @RequestMapping(value = "/doRegister")
+    public String doRegister() {
+        return "register";
+    }
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     public String login(HttpServletRequest request, Map<String, Object> map, HttpSession session) {
@@ -46,6 +50,7 @@ public class MycloudController {
                 session.setAttribute("loginName", userName);
                 return "redirect:/dairy";
             } else {
+                session.setAttribute("loginName", null);
                 map.put("msg", "用户名密码错误");
             }
         }
