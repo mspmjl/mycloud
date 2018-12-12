@@ -19,13 +19,13 @@
     <div class="container">
         <h1>Welcome</h1>
         <form class="form" action="#" th:action="@{/login}" method="post">
-            <input type="text" placeholder="Username" name="userName">
+            <input type="text" placeholder="Username" name="userName" onblur="">
             <input type="password" placeholder="Password" name="password">
             <p style="color: red" th:text="${msg}" th:if="${not #strings.isEmpty(msg)}"></p>
             <button type="submit" id="login-button">Login</button>
 
         </form>
-            <a href="/doRegister"><button >Register</button></a>
+            <a href="/doRegister"><button class="login-button"  placeholder="Register">Register</button></a>
     </div>
     <canvas id="Mycanvas"></canvas>
 </div>
