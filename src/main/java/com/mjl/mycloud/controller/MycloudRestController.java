@@ -19,7 +19,6 @@ public class MycloudRestController {
     @Autowired
     UserService userService;
 
-
     @PostMapping(value = "/doRegisterVerify")
     public String verifyRegister(HttpServletRequest request, @RequestBody UserLoginInfo userLoginInfo) {
 
