@@ -1,11 +1,12 @@
 package com.mjl.mycloud.controller;
 
+import com.google.gson.JsonObject;
 import com.mjl.mycloud.dto.User;
+import com.mjl.mycloud.dto.UserLoginInfo;
 import com.mjl.mycloud.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -55,5 +56,23 @@ public class MycloudController {
             }
         }
         return "login";
+    }
+
+    @ResponseBody
+    @PostMapping(value = "/doRegisterVerify")
+    public String verifyRegister( @RequestBody UserLoginInfo userLoginInfo) {
+
+        JsonObject msg = new JsonObject();
+        if (userLoginInfo != null) {
+            if (!"mjl".equals(userLoginInfo.getInvitationCode())) {
+                msg.addProperty("invitationCode", "Invitation Code illegal!");
+            }
+            String userName = userLoginInfo.getUserName();
+            User queryUser = userService.selectByName(userName);
+            if (null != queryUser) {
+                msg.addProperty("queryUser", "This user already exists.");
+            }
+        }
+        return msg.toString();
     }
 }
