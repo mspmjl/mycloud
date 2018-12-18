@@ -36,4 +36,13 @@ public abstract class BaseDto implements Serializable {
     public void setUuid(String uuid) {
         this.uuid = uuid;
     }
+
+    @Override
+    public String toString() {
+        return "BaseDto{" +
+                "createTime=" + createTime +
+                ", updateTime=" + updateTime +
+                ", uuid='" + uuid + '\'' +
+                '}';
+    }
 }

@@ -42,4 +42,14 @@ public class User extends BaseDto {
     public void setSection(Integer section) {
         this.section = section;
     }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "userName='" + userName + '\'' +
+                ", password='" + password + '\'' +
+                ", role='" + role + '\'' +
+                ", section=" + section +
+                "} " + super.toString();
+    }
 }
