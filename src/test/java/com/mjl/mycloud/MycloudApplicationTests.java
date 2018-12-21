@@ -8,17 +8,23 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.stereotype.Component;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.Date;
 
-@RunWith(SpringRunner.class)
 @SpringBootTest
+@RunWith(SpringRunner.class)
+@Component
 public class MycloudApplicationTests {
     Logger logger = LoggerFactory.getLogger(MycloudApplicationTests.class);
 
     @Autowired
     UserService userService;
+
+    @Autowired
+    private RedisTemplate redisTemplate;
 
     @Test
     public void contextLoads() {
@@ -42,5 +48,10 @@ public class MycloudApplicationTests {
         user.setPassword("111222");
         user.setUpdateTime(new Date());
         userService.update(user);
+    }
+
+    @Test
+    public void set(){
+        redisTemplate.opsForValue().set("test:set","testValue1");
     }
 }
